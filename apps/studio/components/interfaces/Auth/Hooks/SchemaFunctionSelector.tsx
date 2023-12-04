@@ -19,7 +19,8 @@ const SchemaFunctionSelector = ({
   disabled = false,
 }: SchemaFunctionSelectorProps) => {
   const [_proto, _x, _db, schema, func] = (values[id] || '').split('/')
-  const [selectedSchema, setSelectedSchema] = useState(schema || '')
+  // select the public schema by default
+  const [selectedSchema, setSelectedSchema] = useState(schema || 'public')
   const [selectedFunc, setSelectedFunc] = useState(func || '')
 
   return (
@@ -46,9 +47,7 @@ const SchemaFunctionSelector = ({
         disabled={!!disabled}
       />
       {descriptionText && (
-        <div className="mt-2 text-foreground-lighter leading-normal text-sm leading-4">
-          {descriptionText}
-        </div>
+        <div className="mt-2 text-foreground-lighter leading-normal text-sm">{descriptionText}</div>
       )}
     </div>
   )
