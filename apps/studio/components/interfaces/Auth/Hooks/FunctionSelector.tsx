@@ -121,7 +121,7 @@ const FunctionSelector = ({
           </PopoverTrigger_Shadcn_>
           <PopoverContent_Shadcn_ className="p-0 w-64" side="bottom" align="start">
             <Command_Shadcn_>
-              <CommandInput_Shadcn_ placeholder="Find function..." />
+              <CommandInput_Shadcn_ placeholder="Search functions..." />
               <CommandList_Shadcn_>
                 <CommandEmpty_Shadcn_>No functions found</CommandEmpty_Shadcn_>
                 <CommandGroup_Shadcn_>

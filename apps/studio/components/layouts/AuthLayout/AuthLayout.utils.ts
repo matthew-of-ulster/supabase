@@ -48,10 +48,11 @@ export const generateAuthMenu = (
               ...(options?.hooksReleased
                 ? [
                     {
-                      name: 'Hooks (Beta)',
+                      name: 'Hooks',
                       key: 'hooks',
                       url: `/project/${ref}/auth/hooks`,
                       items: [],
+                      label: 'BETA',
                     },
                   ]
                 : []),

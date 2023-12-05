@@ -8,6 +8,7 @@ import {
   Alert_Shadcn_,
   Form,
   IconAlertCircle,
+  IconAlertTriangle,
   Toggle,
 } from 'ui'
 import { boolean, object, string } from 'yup'
@@ -139,9 +140,23 @@ const BasicHooksConfig = observer(() => {
                     disabled={!canUpdateConfig}
                   />
                   {values.HOOK_CUSTOMIZE_ACCESS_TOKEN_URI && (
+                    <Alert_Shadcn_ variant="warning">
+                      <IconAlertTriangle strokeWidth={2} />
+                      <AlertTitle_Shadcn_>Functions must use JSONB</AlertTitle_Shadcn_>
+                      <AlertDescription_Shadcn_>
+                        This function must use JSONB as the{' '}
+                        <strong>
+                          <u>input and return type</u>
+                        </strong>
+                        .
+                      </AlertDescription_Shadcn_>
+                    </Alert_Shadcn_>
+                  )}
+
+                  {values.HOOK_CUSTOMIZE_ACCESS_TOKEN_URI && (
                     <Toggle
                       id="HOOK_CUSTOMIZE_ACCESS_TOKEN_ENABLED"
-                      size="tiny"
+                      size="medium"
                       label="Enable hook"
                       layout="flex"
                       disabled={!canUpdateConfig}

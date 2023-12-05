@@ -121,73 +121,75 @@ const EnterpriseHooksConfig = observer(() => {
           <>
             <FormHeader
               title="Enterprise Hooks"
-              description="Advanced Auth hooks available only to Teams and Enterprise plan customers."
+              description="Advanced Auth hooks are available to Teams and Enterprise plan customers."
             />
-            <FormPanel
-              disabled={true}
-              footer={
-                <div className="flex py-4 px-8">
-                  <FormActions
-                    form={FORM_ID}
-                    isSubmitting={isUpdatingConfig}
-                    hasChanges={hasChanges}
-                    handleReset={handleReset}
-                    disabled={!canUpdateConfig || !isTeamsEnterprisePlan}
-                    helper={
-                      !canUpdateConfig
-                        ? 'You need additional permissions to update authentication settings'
-                        : undefined
-                    }
-                  />
-                </div>
-              }
-            >
-              <FormSection header={<FormSectionLabel>MFA Verification Attempt</FormSectionLabel>}>
-                <FormSectionContent loading={isLoading}>
-                  <SchemaFunctionSelector
-                    id="HOOK_MFA_VERIFICATION_ATTEMPT_URI"
-                    descriptionText="Select the function to be called by Supabase Auth each time a user tries to verify an MFA factor. Return a decision on whether to reject the attempt and future ones, or to allow the user to keep trying."
-                    values={values}
-                    setFieldValue={setFieldValue}
-                    disabled={!canUpdateConfig || !isTeamsEnterprisePlan}
-                  />
-                  {values.HOOK_MFA_VERIFICATION_ATTEMPT_URI && (
-                    <Toggle
-                      id="HOOK_MFA_VERIFICATION_ATTEMPT_ENABLED"
-                      size="tiny"
-                      label="Enable hook"
-                      layout="flex"
+            <div className={isTeamsEnterprisePlan ? '' : 'opacity-50'}>
+              <FormPanel
+                disabled={true}
+                footer={
+                  <div className="flex py-4 px-8">
+                    <FormActions
+                      form={FORM_ID}
+                      isSubmitting={isUpdatingConfig}
+                      hasChanges={hasChanges}
+                      handleReset={handleReset}
                       disabled={!canUpdateConfig || !isTeamsEnterprisePlan}
+                      helper={
+                        !canUpdateConfig
+                          ? 'You need additional permissions to update authentication settings'
+                          : undefined
+                      }
                     />
-                  )}
-                </FormSectionContent>
-              </FormSection>
-              <div className="border-t border-muted"></div>
-
-              <FormSection
-                header={<FormSectionLabel>Password Verification Attempt</FormSectionLabel>}
+                  </div>
+                }
               >
-                <FormSectionContent loading={isLoading}>
-                  <SchemaFunctionSelector
-                    id="HOOK_PASSWORD_VERIFICATION_ATTEMPT_URI"
-                    descriptionText="Select the function to be called by Supabase Auth each time a user tries to sign in with a password. Return a decision whether to allow the user to reject the attempt, or to allow the user to keep trying."
-                    values={values}
-                    setFieldValue={setFieldValue}
-                    disabled={!canUpdateConfig || !isTeamsEnterprisePlan}
-                  />
-                  {values.HOOK_PASSWORD_VERIFICATION_ATTEMPT_URI && (
-                    <Toggle
-                      id="HOOK_PASSWORD_VERIFICATION_ATTEMPT_ENABLED"
-                      size="tiny"
-                      label="Enable hook"
-                      layout="flex"
+                <FormSection header={<FormSectionLabel>MFA Verification Attempt</FormSectionLabel>}>
+                  <FormSectionContent loading={isLoading}>
+                    <SchemaFunctionSelector
+                      id="HOOK_MFA_VERIFICATION_ATTEMPT_URI"
+                      descriptionText="Select the function to be called by Supabase Auth each time a user tries to verify an MFA factor. Return a decision on whether to reject the attempt and future ones, or to allow the user to keep trying."
+                      values={values}
+                      setFieldValue={setFieldValue}
                       disabled={!canUpdateConfig || !isTeamsEnterprisePlan}
                     />
-                  )}
-                </FormSectionContent>
-              </FormSection>
-              <div className="border-t border-muted"></div>
-            </FormPanel>
+                    {values.HOOK_MFA_VERIFICATION_ATTEMPT_URI && (
+                      <Toggle
+                        id="HOOK_MFA_VERIFICATION_ATTEMPT_ENABLED"
+                        size="tiny"
+                        label="Enable hook"
+                        layout="flex"
+                        disabled={!canUpdateConfig || !isTeamsEnterprisePlan}
+                      />
+                    )}
+                  </FormSectionContent>
+                </FormSection>
+                <div className="border-t border-muted"></div>
+
+                <FormSection
+                  header={<FormSectionLabel>Password Verification Attempt</FormSectionLabel>}
+                >
+                  <FormSectionContent loading={isLoading}>
+                    <SchemaFunctionSelector
+                      id="HOOK_PASSWORD_VERIFICATION_ATTEMPT_URI"
+                      descriptionText="Select the function to be called by Supabase Auth each time a user tries to sign in with a password. Return a decision whether to allow the user to reject the attempt, or to allow the user to keep trying."
+                      values={values}
+                      setFieldValue={setFieldValue}
+                      disabled={!canUpdateConfig || !isTeamsEnterprisePlan}
+                    />
+                    {values.HOOK_PASSWORD_VERIFICATION_ATTEMPT_URI && (
+                      <Toggle
+                        id="HOOK_PASSWORD_VERIFICATION_ATTEMPT_ENABLED"
+                        size="tiny"
+                        label="Enable hook"
+                        layout="flex"
+                        disabled={!canUpdateConfig || !isTeamsEnterprisePlan}
+                      />
+                    )}
+                  </FormSectionContent>
+                </FormSection>
+                <div className="border-t border-muted"></div>
+              </FormPanel>
+            </div>
           </>
         )
       }}
